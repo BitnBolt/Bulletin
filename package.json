@@ -9,16 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.16.5",
+    "next": "15.4.4",
+    "next-auth": "^4.24.11",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.4"
+    "sib-api-v3-sdk": "^8.5.0"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@tailwindcss/postcss": "^4",
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^20.19.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

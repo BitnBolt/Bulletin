@@ -2,7 +2,17 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, set up your environment variables:
+
+1. Create a `.env.local` file in the root directory
+2. Add the following environment variables:
+```
+MONGODB_URI=mongodb://localhost:27017/bulletin
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret_key_here
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -16,9 +26,31 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Authentication System
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project includes a complete authentication system using:
+
+- NextAuth.js for authentication
+- MongoDB with Mongoose for user data storage
+- Email and password authentication
+
+### Features
+
+- User registration and login
+- Protected routes
+- User profiles
+- Session management
+- Responsive UI
+
+### Project Structure
+
+- `/src/app/api/auth` - Authentication API routes
+- `/src/app/auth` - Authentication pages (signin, signup, error)
+- `/src/components/auth` - Authentication components
+- `/src/hooks` - Custom hooks including useAuth
+- `/src/lib` - Utility functions
+- `/src/models` - Mongoose models
+- `/src/providers` - React context providers
 
 ## Learn More
 
