@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function AuthError() {
+function AuthErrorContent() {
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
 
@@ -42,5 +43,27 @@ export default function AuthError() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Loading component for Suspense
+function LoadingState() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md">
+        <div className="flex justify-center">
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-200 border-t-blue-600"></div>
+        </div>
+        <p className="text-center">Loading...</p>
+      </div>
+    </div>
+  );
+}
+
+export default function AuthError() {
+  return (
+    <Suspense fallback={<LoadingState />}>
+      <AuthErrorContent />
+    </Suspense>
   );
 } 

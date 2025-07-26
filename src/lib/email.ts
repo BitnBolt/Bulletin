@@ -2,8 +2,8 @@ import * as brevo from '@getbrevo/brevo';
 
 // Initialize Brevo API instance
 const apiInstance = new brevo.TransactionalEmailsApi();
-const apiKey = apiInstance.authentications['apiKey'];
-apiKey.apiKey = process.env.BREVO_API_KEY || '';
+// Set the API key correctly
+(apiInstance as any).authentications.apiKey.apiKey = process.env.BREVO_API_KEY || '';
 
 interface SendEmailParams {
   to: string;
