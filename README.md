@@ -10,6 +10,9 @@ First, set up your environment variables:
 MONGODB_URI=mongodb://localhost:27017/bulletin
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret_key_here
+BREVO_API_KEY=your_brevo_api_key_here
+EMAIL_FROM=your_email@example.com
+EMAIL_FROM_NAME=Bulletin App
 ```
 
 Then, run the development server:
@@ -33,10 +36,12 @@ This project includes a complete authentication system using:
 - NextAuth.js for authentication
 - MongoDB with Mongoose for user data storage
 - Email and password authentication
+- Password reset functionality with Brevo for email delivery
 
 ### Features
 
 - User registration and login
+- Forgot password and reset password functionality
 - Protected routes
 - User profiles
 - Session management
@@ -45,12 +50,24 @@ This project includes a complete authentication system using:
 ### Project Structure
 
 - `/src/app/api/auth` - Authentication API routes
-- `/src/app/auth` - Authentication pages (signin, signup, error)
+- `/src/app/auth` - Authentication pages (signin, signup, forgot-password, reset-password, error)
 - `/src/components/auth` - Authentication components
 - `/src/hooks` - Custom hooks including useAuth
-- `/src/lib` - Utility functions
+- `/src/lib` - Utility functions including email sending with @getbrevo/brevo
 - `/src/models` - Mongoose models
 - `/src/providers` - React context providers
+
+## Password Reset Flow
+
+The password reset functionality works as follows:
+
+1. User clicks on "Forgot password?" link on the sign-in page
+2. User enters their email address on the forgot password page
+3. System generates a secure reset token and sends an email using Brevo
+4. User receives an email with a link to reset their password
+5. User clicks the link and is directed to the reset password page
+6. User enters a new password and confirms it
+7. System updates the user's password and redirects to the sign-in page
 
 ## Learn More
 

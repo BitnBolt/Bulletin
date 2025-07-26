@@ -69,9 +69,16 @@ export default function SignIn() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+            <div className="flex items-center justify-between">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div className="text-sm">
+                <Link href="/auth/forgot-password" className="text-blue-600 hover:text-blue-800">
+                  Forgot password?
+                </Link>
+              </div>
+            </div>
             <input
               id="password"
               name="password"
@@ -95,11 +102,16 @@ export default function SignIn() {
           </div>
         </form>
 
-        <div className="mt-4 text-center text-sm">
+        <div className="mt-4 flex flex-col space-y-2 text-center text-sm">
           <p>
             Don&apos;t have an account?{' '}
             <Link href="/auth/signup" className="text-blue-600 hover:text-blue-800">
               Sign up
+            </Link>
+          </p>
+          <p>
+            <Link href="/auth/forgot-password" className="text-blue-600 hover:text-blue-800">
+              Forgot your password?
             </Link>
           </p>
         </div>
