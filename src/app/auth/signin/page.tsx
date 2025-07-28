@@ -4,6 +4,8 @@ import { useState, FormEvent } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -39,7 +41,7 @@ export default function SignIn() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md">
+      <Card className="w-full max-w-md space-y-8 p-6">
         <div className="text-center">
           <h1 className="text-3xl font-bold">Sign In</h1>
           <p className="mt-2 text-gray-600">Welcome back to Bulletin</p>
@@ -92,13 +94,13 @@ export default function SignIn() {
           </div>
 
           <div>
-            <button
+            <Button
               type="submit"
-              disabled={isLoading}
-              className="flex w-full justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+              isLoading={isLoading}
+              className="w-full"
             >
               {isLoading ? 'Signing in...' : 'Sign In'}
-            </button>
+            </Button>
           </div>
         </form>
 
@@ -115,7 +117,7 @@ export default function SignIn() {
             </Link>
           </p>
         </div>
-      </div>
+      </Card>
     </div>
   );
 } 

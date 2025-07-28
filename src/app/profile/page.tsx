@@ -3,6 +3,9 @@
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import { useAuth } from '@/hooks/useAuth';
 import { useState, FormEvent } from 'react';
+import PageHeader from '@/components/layout/PageHeader';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
 
 export default function Profile() {
   const { user } = useAuth();
@@ -31,9 +34,9 @@ export default function Profile() {
   return (
     <ProtectedRoute>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="mb-6 text-3xl font-bold">Your Profile</h1>
+        <PageHeader title="Your Profile" />
         
-        <div className="rounded-lg bg-white p-6 shadow">
+        <Card>
           {message.text && (
             <div
               className={`mb-4 rounded-md p-4 ${
@@ -73,16 +76,15 @@ export default function Profile() {
             </div>
             
             <div>
-              <button
+              <Button
                 type="submit"
-                disabled={isLoading}
-                className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+                isLoading={isLoading}
               >
                 {isLoading ? 'Saving...' : 'Save Changes'}
-              </button>
+              </Button>
             </div>
           </form>
-        </div>
+        </Card>
       </div>
     </ProtectedRoute>
   );

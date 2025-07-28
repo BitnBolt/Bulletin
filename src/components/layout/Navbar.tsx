@@ -3,13 +3,19 @@
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (path) => {
+    return pathname === path;
+  };
 
   return (
-    <nav className="bg-white shadow">
+    <nav className="bg-white shadow sticky top-0 z-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex">
@@ -18,14 +24,36 @@ export default function Navbar() {
                 Bulletin
               </Link>
             </div>
+            
+            {isAuthenticated && (
+              <div className="hidden sm:ml-6 sm:flex sm:space-x-4 items-center">
+                <Link 
+                  href="/dashboard" 
+                  className={`px-3 py-2 text-sm font-medium ${
+                    isActive('/dashboard') 
+                      ? 'border-b-2 border-blue-500 text-blue-600' 
+                      : 'text-gray-700 hover:text-blue-600'
+                  }`}
+                >
+                  Dashboard
+                </Link>
+                <Link 
+                  href="/files" 
+                  className={`px-3 py-2 text-sm font-medium ${
+                    isActive('/files') 
+                      ? 'border-b-2 border-blue-500 text-blue-600' 
+                      : 'text-gray-700 hover:text-blue-600'
+                  }`}
+                >
+                  Files
+                </Link>
+              </div>
+            )}
           </div>
           
           <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
             {isAuthenticated ? (
               <>
-                <Link href="/dashboard" className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600">
-                  Dashboard
-                </Link>
                 <div className="relative ml-3">
                   <button
                     type="button"
@@ -104,14 +132,33 @@ export default function Navbar() {
               <>
                 <Link
                   href="/dashboard"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                  className={`block px-3 py-2 text-base font-medium ${
+                    isActive('/dashboard') 
+                      ? 'bg-blue-50 text-blue-600' 
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <Link
+                  href="/files"
+                  className={`block px-3 py-2 text-base font-medium ${
+                    isActive('/files') 
+                      ? 'bg-blue-50 text-blue-600' 
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Files
+                </Link>
+                <Link
                   href="/profile"
-                  className="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                  className={`block px-3 py-2 text-base font-medium ${
+                    isActive('/profile') 
+                      ? 'bg-blue-50 text-blue-600' 
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Profile
