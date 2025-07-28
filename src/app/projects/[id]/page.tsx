@@ -156,7 +156,7 @@ export default function ProjectDetail() {
     setIsLoading(true);
     setTimeout(() => {
       const projectId = Array.isArray(id) ? id[0] : id;
-      const foundProject = mockProjects[projectId];
+      const foundProject = mockProjects[projectId as keyof typeof mockProjects];
       setProject(foundProject || null);
       setIsLoading(false);
     }, 500);

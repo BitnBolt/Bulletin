@@ -30,7 +30,7 @@ export default function AddMessage({ members, currentUser, onSubmit, isRemark = 
     onSubmit({
       content,
       type: messageType,
-      visibility: visibility === 'specific' ? selectedMembers : visibility,
+      visibility: selectedMembers.length > 0 ? selectedMembers : visibility,
     });
     
     // Reset form
@@ -103,7 +103,7 @@ export default function AddMessage({ members, currentUser, onSubmit, isRemark = 
             </div>
           </div>
           
-          {visibility === 'specific' && (
+          {visibility === 'specific' as any && (
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">Select Members</label>
               <div className="mt-2 max-h-40 overflow-y-auto rounded-md border border-gray-300 p-2">

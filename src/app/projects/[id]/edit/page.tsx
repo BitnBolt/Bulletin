@@ -80,7 +80,7 @@ export default function EditProject() {
     // In a real app, fetch project data from API
     setIsLoading(true);
     setTimeout(() => {
-      const project = mockProjects[projectId];
+      const project = mockProjects[projectId as keyof typeof mockProjects];
       if (project) {
         setFormData(project);
       } else {
